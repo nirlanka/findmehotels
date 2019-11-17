@@ -62,6 +62,10 @@
 
 <button on:click={onSortChange}>{Text.sortByPriceBtn} {priceSortingDirectionStr}</button>
 
-{#each viewHotels as hotel}
-  <HotelThumb data={hotel} />
-{/each}
+{#if viewHotels.length > 0}
+  {#each viewHotels as hotel}
+    <HotelThumb data={hotel} />
+  {/each}
+{:else}
+  <p>{Text.noResultsForFilterMsg}</p>
+{/if}

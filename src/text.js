@@ -8,6 +8,8 @@ export default {
     reviewRatingInput: 'Review rating',
     clearAllBtn: 'Clear all',
 
+    noResultsForFilterMsg: 'No results matching the filter. Please clear filters.',
+
     sortAsc: 'ascending',
     sortDesc: 'descending',
     sortByPriceBtn: 'Sort by price: ',
