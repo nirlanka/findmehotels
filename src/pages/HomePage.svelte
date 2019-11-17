@@ -3,10 +3,14 @@
 	import SearchBox from '../components/SearchBox.svelte';
 	import Text from '../text';
 
-	let hotelname;
+	let stars, price, hotelname, rating;
 </script>
 
-<SearchBox placeholder={Text.hotelname} onTextChange={text => hotelname = text} />
+<SearchBox placeholder={Text.starRatingInput} onTextChange={text => stars = text} />
+<SearchBox placeholder={Text.priceInput} onTextChange={text => price = text} />
+<SearchBox placeholder={Text.hotelnameInput} onTextChange={text => hotelname = text} />
+<SearchBox placeholder={Text.reviewRatingInput} onTextChange={text => rating = text} />
+
 <HotelList filter={{
-    hotelname,
+    stars, price, hotelname, rating
 }} />
