@@ -5,7 +5,7 @@
 
     export let id;
 
-    let hotel = {};
+    let hotel = { placeholder: true, };
 
     onMount(async () => {
         const hotels = await getHotelsList();
@@ -17,6 +17,8 @@
     <Link to="/">Home</Link>
 </nav>
 
-<h2>{hotel.name}</h2>
+{#if !hotel.placeholder }
+    <h2>{hotel.name}</h2>
 
-<div>{@html hotel.description}</div>
+    <div>{@html hotel.description}</div>
+{/if}

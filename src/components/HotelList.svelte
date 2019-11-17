@@ -65,7 +65,7 @@
   });
 </script>
 
-<button on:click={onSortChange}>{Text.sortByPriceBtn} {priceSortingDirectionStr}</button>
+<button on:click={onSortChange}>{Text.sortByPriceBtn} {priceSortingDirectionStr || ''}</button>
 
 {#if viewHotels.length > 0}
   {#each viewHotels as hotel}
