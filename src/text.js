@@ -8,6 +8,10 @@ export default {
     reviewRatingInput: 'Review rating',
     clearAllBtn: 'Clear all',
 
+    sortAsc: 'ascending',
+    sortDesc: 'descending',
+    sortByPriceBtn: 'Sort by price: ',
+
     reviewRaiting: 'reviews',
     starRating: 'stars',
 
