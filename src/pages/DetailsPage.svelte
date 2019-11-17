@@ -2,6 +2,7 @@
     import { onMount } from "svelte"
     import { Link } from "svelte-routing";
     import { getHotelsList } from "../services/hotels";
+    import Text from '../text';
 
     export let id;
 
@@ -21,4 +22,6 @@
     <h2>{hotel.name}</h2>
 
     <div>{@html hotel.description}</div>
+{:else}
+    <p>{Text.loadingDetails}</p>
 {/if}

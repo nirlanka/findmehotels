@@ -11,6 +11,7 @@ export default {
     clearAllBtn: 'Clear all',
 
     noResultsForFilterMsg: 'No results matching the filter. Please clear filters.',
+    loadingDetails: 'Please wait while loading details...',
 
     sortAsc: 'ascending',
     sortDesc: 'descending',
