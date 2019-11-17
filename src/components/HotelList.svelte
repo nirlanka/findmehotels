@@ -4,6 +4,8 @@
   import { getHotelsList } from "../services/hotels";
   import Text from '../text';
   import sortBy from 'lodash/sortBy';
+  import minBy from 'lodash/minBy';
+  import maxBy from 'lodash/maxBy';
 
   export let filter = {};
 
@@ -14,6 +16,8 @@
 
   let priceSortingDirection = 1; // 1 ASC, -1 DESC
   let priceSortingDirectionStr;
+
+  let actualPriceMin, actualPriceMax, minPrice, maxPrice;
 
   $: {
     if (hotels.length > 0) {
@@ -32,14 +36,14 @@
       if (filter.stars) {
         list = list.filter(h => h.stars === +filter.stars);
       }
-      if (filter.minPrice || filter.maxPrice) {
-        const minPrice = +(filter.minPrice || 0);
-        const maxPrice = +(filter.maxPrice || 0);
+      if (minPrice || maxPrice) {
+        const _minPrice = +(filter.minPrice || 0);
+        const _maxPrice = +(filter.maxPrice || 0);
 
-        if (maxPrice) {
-          list = list.filter(h => h.price >= minPrice && h.price <= maxPrice);
+        if (_maxPrice) {
+          list = list.filter(h => h.price >= _minPrice && h.price <= _maxPrice);
         } else {
-          list = list.filter(h => h.price >= minPrice);
+          list = list.filter(h => h.price >= _minPrice);
         }
       }
       if (filter.hotelname) {
@@ -60,10 +64,54 @@
     priceSortingDirection *= -1;
   }
 
+  function clearPriceFilter() {
+    minPrice = '';
+    maxPrice = '';
+  }
+
   onMount(async () => {
     hotels = await getHotelsList();
+    actualPriceMin = minBy(hotels, h => h.price).price;
+    actualPriceMax = maxBy(hotels, h => h.price).price;
+    console.log(actualPriceMin, actualPriceMax);
   });
 </script>
+
+<div class="inline-block">
+
+  <label for="priceFilterMin">{Text.minPriceFilter}</label>
+  <input type="range" list="tickmarks-min" min={actualPriceMin} max={actualPriceMax} step="10" bind:value={minPrice} name="priceFilterMin" />
+  <datalist id="tickmarks-min">
+    <option value="0" label={actualPriceMin}></option>
+    <option value="10"></option>
+    <option value="20"></option>
+    <option value="30"></option>
+    <option value="40"></option>
+    <option value="50"></option>
+    <option value="60"></option>
+    <option value="70"></option>
+    <option value="80"></option>
+    <option value="90"></option>
+    <option value="100" label={actualPriceMax}></option>
+  </datalist>
+
+  <label for="priceFilterMax">{Text.maxPriceFilter}</label>
+  <input type="range" list="tickmarks-max" min={actualPriceMin} max={actualPriceMax} step="10" bind:value={maxPrice} name="priceFilterMax" />
+  <datalist id="tickmarks-max">
+    <option value="0" label={actualPriceMin}></option>
+    <option value="10"></option>
+    <option value="20"></option>
+    <option value="30"></option>
+    <option value="40"></option>
+    <option value="50"></option>
+    <option value="60"></option>
+    <option value="70"></option>
+    <option value="80"></option>
+    <option value="90"></option>
+    <option value="100" label={actualPriceMax}></option>
+  </datalist>
+
+</div>
 
 <button on:click={onSortChange}>{Text.sortByPriceBtn} {priceSortingDirectionStr || ''}</button>
 

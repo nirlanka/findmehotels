@@ -3,13 +3,8 @@
   import SearchBox from "../components/SearchBox.svelte";
   import Text from "../text";
 
-  let stars, minPrice, maxPrice, hotelname, rating;
+  let stars, hotelname, rating;
   let starSearch, priceSearch, nameSearch, ratingSearch;
-
-  function clearPriceFilter() {
-    minPrice = '';
-    maxPrice = '';
-  }
 
   function clearAll() {
     stars = price = hotelname = rating = "";
@@ -25,14 +20,6 @@
   onTextChange={text => (stars = text)}
   bind:this={starSearch} />
 
-<input type="text" 
-  bind:value={minPrice}
-  placeholder={Text.minPriceFilter} />
-<input type="text" 
-  bind:value={maxPrice}
-  placeholder={Text.maxPriceFilter} />
-<button on:click={clearPriceFilter}>{Text.clearbtn}</button>
-
 <SearchBox
   placeholder={Text.hotelnameInput}
   onTextChange={text => (hotelname = text)}
@@ -45,4 +32,4 @@
 <button on:click={clearAll}>{Text.clearAllBtn}</button>
 
 <HotelList
-  filter={{ stars, minPrice, maxPrice, hotelname, rating }} />
+  filter={{ stars, hotelname, rating }} />
