@@ -1,13 +1,12 @@
 <script>
-    import { onMount } from 'svelte';
+  import { onMount } from "svelte";
 
-    export let data;    
+  export let data;
 
-    let descEl;
-    onMount(() => {
-        descEl.innerHTML = DomPurify.sanitize(data.description);
-    });
+  let descEl;
+  onMount(() => {
+    descEl.innerHTML = DomPurify.sanitize(data.description);
+  });
 </script>
 
-
-<div bind:this={descEl}></div>
+<div bind:this={descEl} />
