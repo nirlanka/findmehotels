@@ -6,6 +6,7 @@ export default {
     starRatingInput: 'Stars',
     priceInput: 'Price/$',
     reviewRatingInput: 'Review rating',
+    clearAllBtn: 'Clear all',
 
     reviewRaiting: 'reviews',
     starRating: 'stars',

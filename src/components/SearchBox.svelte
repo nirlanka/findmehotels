@@ -9,11 +9,13 @@
     let text;
     const _onTextChange = debounce(onTextChange, timeout);
 
-    function clearText() {
+    export function clearText() {
         text = '';
         _onTextChange('');
     }
 </script>
+
+<slot name="behavior" :on="on" :actions="actions"></slot>
 
 <input type="text" 
     bind:value={text} 
