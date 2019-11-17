@@ -1,5 +1,6 @@
 <script>
     import DomPurify from 'dompurify';
+    import Text from '../text';
     
     export let data;
 
@@ -9,5 +10,9 @@
 </script>
 
 <h3>{data.name}</h3>
-<p>{data.rating}/10 - {data.stars}/5</p>
+<p>
+    {Text.usd}{data.price} &mdash;
+    {data.rating}/10 {Text.reviewRaiting} &mdash; 
+    {data.stars}/5 {Text.starRating}
+</p>
 <p>{shortAddress}</p>

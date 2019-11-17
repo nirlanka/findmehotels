@@ -1,18 +1,11 @@
 <script>
 	import Header from './components/Header.svelte';
-	import HotelList from './components/HotelList.svelte';
-	import SearchBox from './components/SearchBox.svelte';
-	import Text from './text';
-
-	let hotelname;
+	import HomePage from './pages/HomePage.svelte';
 </script>
 
 <main>
 	<Header />
-	<SearchBox placeholder={Text.hotelname} onTextChange={text => hotelname = text} />
-	<HotelList filter={{
-		hotelname,
-	}} />
+	<HomePage />
 </main>
 
 <style>

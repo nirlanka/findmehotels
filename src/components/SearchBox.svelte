@@ -4,9 +4,15 @@
 
     export let onTextChange;
     export let placeholder;
+    export let timeout = 250;
 
     let text;
-    const _onTextChange = debounce(onTextChange, 400);
+    const _onTextChange = debounce(onTextChange, timeout);
+
+    function clearText() {
+        text = '';
+        _onTextChange('');
+    }
 </script>
 
 <input type="text" 
@@ -14,4 +20,4 @@
     on:input={event => _onTextChange(text)}
     placeholder={placeholder}>
 
-<button on:click={() => text = ''}>{Text.clearbtn}</button>
+<button on:click={clearText}>{Text.clearbtn}</button>
