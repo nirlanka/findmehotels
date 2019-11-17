@@ -1,7 +1,7 @@
 <script>
   import HotelThumb from "./HotelThumb.svelte";
-  import Text from '../text';
-  import sortBy from 'lodash/sortBy';
+  import Text from "../text";
+  import sortBy from "lodash/sortBy";
 
   export let filter = {};
   export let hotels = [];
@@ -14,7 +14,6 @@
 
   $: {
     if (hotels.length > 0) {
-
       switch (priceSortingDirection) {
         case 1:
           priceSortingDirectionStr = Text.sortDesc; // ASC --> DESC
@@ -23,7 +22,7 @@
           priceSortingDirectionStr = Text.sortAsc; // DESC --> ASC
           break;
       }
-      
+
       let list = sortBy([...hotels], [x => priceSortingDirection * x.price]);
 
       if (filter.stars) {
@@ -58,7 +57,9 @@
   }
 </script>
 
-<button on:click={onSortChange}>{Text.sortByPriceBtn} {priceSortingDirectionStr || ''}</button>
+<button on:click={onSortChange}>
+  {Text.sortByPriceBtn} {priceSortingDirectionStr || ''}
+</button>
 
 {#if viewHotels.length > 0}
   {#each viewHotels as hotel}

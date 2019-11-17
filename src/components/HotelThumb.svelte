@@ -1,7 +1,7 @@
 <script>
   import DomPurify from "dompurify";
   import Text from "../text";
-  import { Link } from 'svelte-routing';
+  import { Link } from "svelte-routing";
 
   export let data;
 
@@ -16,8 +16,8 @@
 <div>
   <h3>{data.name}</h3>
   <p>
-    {Text.usd}{data.price} &mdash; {data.rating}/10 {Text.reviewRaiting} &mdash; {data.stars}/5
-    {Text.starRating}
+    {Text.usd}{data.price} &mdash; {data.rating}/10 {Text.reviewRaiting} &mdash;
+    {data.stars}/5 {Text.starRating}
   </p>
   <p>... {shortAddress}</p>
   <Link to={`hotel/${data.id}`}>View details</Link>

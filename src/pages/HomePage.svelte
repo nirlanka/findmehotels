@@ -4,8 +4,8 @@
   import Text from "../text";
   import { getHotelsList } from "../services/hotels";
   import { onMount } from "svelte";
-  import minBy from 'lodash/minBy';
-  import maxBy from 'lodash/maxBy'; 
+  import minBy from "lodash/minBy";
+  import maxBy from "lodash/maxBy";
 
   let stars, minPrice, maxPrice, hotelname, rating;
   let starSearch, nameSearch, ratingSearch;
@@ -37,14 +37,18 @@
   bind:this={starSearch} />
 
 <span>{Text.priceRangeLabel}:</span>
-<input type="number" 
+<input
+  type="number"
   bind:value={minPrice}
   placeholder={Text.minPriceFilter}
-  min={minPrice} max={maxPrice} />
-<input type="number" 
+  min={minPrice}
+  max={maxPrice} />
+<input
+  type="number"
   bind:value={maxPrice}
   placeholder={Text.maxPriceFilter}
-  min={minPrice} max={maxPrice} />
+  min={minPrice}
+  max={maxPrice} />
 <button on:click={clearPriceFilter}>{Text.clearbtn}</button>
 
 <span>{Text.hotelnameInput}:</span>
@@ -61,6 +65,4 @@
 
 <button on:click={clearAll}>{Text.clearAllBtn}</button>
 
-<HotelList
-  filter={{ stars, minPrice, maxPrice, hotelname, rating }} 
-  hotels={hotels} />
+<HotelList filter={{ stars, minPrice, maxPrice, hotelname, rating }} {hotels} />
