@@ -1,6 +1,8 @@
 <script>
   import Header from "./components/Header.svelte";
   import HomePage from "./pages/HomePage.svelte";
+  import DetailsPage from './pages/DetailsPage.svelte';
+  import { Router, Route } from "svelte-routing";
 </script>
 
 <style>
@@ -19,5 +21,8 @@
 
 <main>
   <Header />
-  <HomePage />
+  <Router>
+    <Route path=""><HomePage /></Route>
+    <Route path="hotel/:id" let:params><DetailsPage id={params.id} /></Route>
+  </Router>
 </main>
