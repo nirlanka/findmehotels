@@ -20,5 +20,8 @@ export default {
     reviewRaiting: 'reviews',
     starRating: 'stars',
 
-    usd: '$'
+    usd: '$',
+
+    byUserLabel: 'by',
+    searchReviewText: 'Search reviews',
 }

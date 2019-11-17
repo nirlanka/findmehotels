@@ -19,6 +19,6 @@
     {Text.usd}{data.price} &mdash; {data.rating}/10 {Text.reviewRaiting} &mdash; {data.stars}/5
     {Text.starRating}
   </p>
-  <p>{shortAddress}</p>
+  <p>... {shortAddress}</p>
   <Link to={`hotel/${data.id}`}>View details</Link>
 </div>
