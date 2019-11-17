@@ -32,10 +32,15 @@
       if (filter.stars) {
         list = list.filter(h => h.stars === +filter.stars);
       }
-      if (filter.price) {
-        const _len = 10 ** +filter.price.length / 10;
-        const fingerprint = Math.round(+filter.price / _len);
-        list = list.filter(h => Math.round(h.price / _len) === fingerprint);
+      if (filter.minPrice || filter.maxPrice) {
+        const minPrice = +(filter.minPrice || 0);
+        const maxPrice = +(filter.maxPrice || 0);
+
+        if (maxPrice) {
+          list = list.filter(h => h.price >= minPrice && h.price <= maxPrice);
+        } else {
+          list = list.filter(h => h.price >= minPrice);
+        }
       }
       if (filter.hotelname) {
         const fingerprint = filter.hotelname.toLowerCase();

@@ -4,7 +4,8 @@ export default {
     clearbtn: 'Clear',
     hotelnameInput: 'Hotel name',
     starRatingInput: 'Stars',
-    priceInput: 'Price/$',
+    minPriceFilter: 'Minimum price/$',
+    maxPriceFilter: 'Maximum price/$',
     reviewRatingInput: 'Review rating',
     clearAllBtn: 'Clear all',
 

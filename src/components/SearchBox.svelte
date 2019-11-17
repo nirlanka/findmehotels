@@ -15,8 +15,6 @@
   }
 </script>
 
-<slot name="behavior" :on="on" :actions="actions" />
-
 <input
   type="text"
   bind:value={text}
