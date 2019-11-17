@@ -1,15 +1,12 @@
 <script>
-  import { onMount } from "svelte";
   import HotelThumb from "./HotelThumb.svelte";
-  import { getHotelsList } from "../services/hotels";
   import Text from '../text';
   import sortBy from 'lodash/sortBy';
 
   export let filter = {};
+  export let hotels = [];
 
   let prevFilter = {};
-
-  let hotels = [];
   let viewHotels = [];
 
   let priceSortingDirection = 1; // 1 ASC, -1 DESC
@@ -59,10 +56,6 @@
   function onSortChange() {
     priceSortingDirection *= -1;
   }
-
-  onMount(async () => {
-    hotels = await getHotelsList();
-  });
 </script>
 
 <button on:click={onSortChange}>{Text.sortByPriceBtn} {priceSortingDirectionStr || ''}</button>

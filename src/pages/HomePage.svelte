@@ -2,41 +2,58 @@
   import HotelList from "../components/HotelList.svelte";
   import SearchBox from "../components/SearchBox.svelte";
   import Text from "../text";
+  import { getHotelsList } from "../services/hotels";
+  import { onMount } from "svelte";
+  import minBy from 'lodash/minBy';
+  import maxBy from 'lodash/maxBy'; 
 
   let stars, minPrice, maxPrice, hotelname, rating;
-  let starSearch, priceSearch, nameSearch, ratingSearch;
+  let starSearch, nameSearch, ratingSearch;
+  let hotels;
 
   function clearPriceFilter() {
-    minPrice = '';
-    maxPrice = '';
+    minPrice = minBy(hotels, h => h.price).price;
+    maxPrice = maxBy(hotels, h => h.price).price;
   }
 
   function clearAll() {
-    stars = price = hotelname = rating = "";
+    stars = hotelname = rating = "";
     starSearch.clearText();
-    starSearch.clearText();
-    starSearch.clearText();
-    starSearch.clearText();
+    clearPriceFilter();
+    nameSearch.clearText();
+    ratingSearch.clearText();
   }
+
+  onMount(async () => {
+    hotels = await getHotelsList();
+    clearPriceFilter();
+  });
 </script>
 
+<span>{Text.starRatingInput}:</span>
 <SearchBox
   placeholder={Text.starRatingInput}
   onTextChange={text => (stars = text)}
   bind:this={starSearch} />
 
-<input type="text" 
+<span>{Text.priceRangeLabel}:</span>
+<input type="number" 
   bind:value={minPrice}
-  placeholder={Text.minPriceFilter} />
-<input type="text" 
+  placeholder={Text.minPriceFilter}
+  min={minPrice} max={maxPrice} />
+<input type="number" 
   bind:value={maxPrice}
-  placeholder={Text.maxPriceFilter} />
+  placeholder={Text.maxPriceFilter}
+  min={minPrice} max={maxPrice} />
 <button on:click={clearPriceFilter}>{Text.clearbtn}</button>
 
+<span>{Text.hotelnameInput}:</span>
 <SearchBox
   placeholder={Text.hotelnameInput}
   onTextChange={text => (hotelname = text)}
   bind:this={nameSearch} />
+
+<span>{Text.reviewRatingInput}:</span>
 <SearchBox
   placeholder={Text.reviewRatingInput}
   onTextChange={text => (rating = text)}
@@ -45,4 +62,5 @@
 <button on:click={clearAll}>{Text.clearAllBtn}</button>
 
 <HotelList
-  filter={{ stars, minPrice, maxPrice, hotelname, rating }} />
+  filter={{ stars, minPrice, maxPrice, hotelname, rating }} 
+  hotels={hotels} />
