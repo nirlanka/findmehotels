@@ -15,7 +15,9 @@
   let priceSortingDirection = 1; // 1 ASC, -1 DESC
   let priceSortingDirectionStr;
 
-  $: {
+  let minPrice, maxPrice;
+
+  function onFilter() {
     if (hotels.length > 0) {
 
       switch (priceSortingDirection) {
@@ -32,14 +34,14 @@
       if (filter.stars) {
         list = list.filter(h => h.stars === +filter.stars);
       }
-      if (filter.minPrice || filter.maxPrice) {
-        const minPrice = +(filter.minPrice || 0);
-        const maxPrice = +(filter.maxPrice || 0);
+      if (minPrice || maxPrice) {
+        const _minPrice = +(filter.minPrice || 0);
+        const _maxPrice = +(filter.maxPrice || 0);
 
-        if (maxPrice) {
-          list = list.filter(h => h.price >= minPrice && h.price <= maxPrice);
+        if (_maxPrice) {
+          list = list.filter(h => h.price >= _minPrice && h.price <= _maxPrice);
         } else {
-          list = list.filter(h => h.price >= minPrice);
+          list = list.filter(h => h.price >= _minPrice);
         }
       }
       if (filter.hotelname) {
@@ -56,14 +58,33 @@
     }
   }
 
+  $: {
+    onFilter();
+  }
+
   function onSortChange() {
     priceSortingDirection *= -1;
+  }
+
+  function clearPriceFilter() {
+    minPrice = '';
+    maxPrice = '';
   }
 
   onMount(async () => {
     hotels = await getHotelsList();
   });
 </script>
+
+<input type="number" 
+  bind:value={minPrice}
+  placeholder={Text.minPriceFilter}
+  on:input={onFilter} />
+<input type="number" 
+  bind:value={maxPrice}
+  placeholder={Text.maxPriceFilter}
+  on:input={onFilter} />
+<button on:click={clearPriceFilter}>{Text.clearbtn}</button>
 
 <button on:click={onSortChange}>{Text.sortByPriceBtn} {priceSortingDirectionStr || ''}</button>
 
