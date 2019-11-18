@@ -1,6 +1,8 @@
 import Env from '../env';
 
-export async function getHotelsList() {
-    const url = `${Env.apiBaseUrl}/hotels/en`;
-    return (await fetch(url)).json();
+export default class HotelService {
+    async getHotelsList() {
+        const url = `${Env.apiBaseUrl}/hotels/en`;
+        return (await fetch(url)).json();
+    }
 }

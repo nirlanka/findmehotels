@@ -2,7 +2,7 @@
   import HotelList from "../components/HotelList.svelte";
   import SearchBox from "../components/SearchBox.svelte";
   import Text from "../text";
-  import { getHotelsList } from "../services/hotels";
+  import HotelService from "../services/hotels";
   import { onMount } from "svelte";
   import minBy from "lodash/minBy";
   import maxBy from "lodash/maxBy";
@@ -25,7 +25,7 @@
   }
 
   onMount(async () => {
-    hotels = await getHotelsList();
+    hotels = await (new HotelService()).getHotelsList();
     clearPriceFilter();
   });
 </script>

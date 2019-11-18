@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { Link } from "svelte-routing";
-  import { getHotelsList } from "../services/hotels";
+  import HotelService from "../services/hotels";
   import Text from "../text";
   import Review from "../components/Review.svelte";
   import sortBy from "lodash/sortBy";
@@ -38,7 +38,7 @@
   }
 
   onMount(async () => {
-    const hotels = await getHotelsList();
+    const hotels = await (new HotelService()).getHotelsList();
     hotel = hotels.find(h => h.id === +id);
     onFilterChange("");
   });
