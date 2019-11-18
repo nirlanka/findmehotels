@@ -54,6 +54,7 @@
     {Text.usd}{hotel.price} &mdash; {hotel.rating}/10 {Text.reviewRaiting}
     &mdash; {hotel.stars}/5 {Text.starRating}
   </p>
+  <div class="hotel-photo" style={`background-image: url(${hotel.photo});`}>&nbsp;</div>
   <div>
     {@html hotel.description}
   </div>
@@ -72,3 +73,12 @@
 {:else}
   <p>{Text.loadingDetails}</p>
 {/if}
+
+<style>
+  .hotel-photo {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+</style>
