@@ -21,12 +21,13 @@
 
       if (filterText) {
         const searchWords = filterText
+          .toLowerCase()
           .replace(/\,/g, " ")
           .split(" ")
           .filter(x => x.trim());
         list.forEach(rw => {
           rw.searchResultPoints = searchWords.filter(
-            w => rw.review.description.indexOf(w) > -1
+            w => rw.review.description.toLowerCase().indexOf(w) > -1
           ).length;
         });
         list = sortBy(list, rw => -1 * rw.searchResultPoints);
