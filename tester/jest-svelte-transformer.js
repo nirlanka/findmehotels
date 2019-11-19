@@ -1,17 +1,10 @@
 const deasync = require('deasync');
-// const compile = require('./compile').compile;
 const compile = require('./compile').compile;
 
 console.log('Starting Svelte transform module...');
 
 function transform(filePath) {
   console.log('Processing Svelte transform module...');
-
-  // let code, map;
-  // compile(filePath, 'App', {}).then(comp => {
-  //   code = comp.code
-  //   map = comp.map
-  // });
 
   const { code, map } = compile(filePath);
 
