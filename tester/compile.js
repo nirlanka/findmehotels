@@ -1,7 +1,5 @@
 const svelte = require('svelte/compiler')
 
-console.log('svelte/compiler -->', svelte);
-
 function process(src, filename) {
   const result = svelte.compile(src, {
     filename,

@@ -1,8 +1,6 @@
 console.log('Loading Babel configs...');
 
 module.exports = function (api) {
-  console.log('Processing Babel configs...');
-
   api.cache(true)
 
   return {
