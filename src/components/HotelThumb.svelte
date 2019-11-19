@@ -1,5 +1,4 @@
 <script>
-  import DomPurify from "dompurify";
   import Text from "../text";
   import { Link } from "svelte-routing";
 
